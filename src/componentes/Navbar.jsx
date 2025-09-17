@@ -5,15 +5,14 @@ export const Navbar = () => {
         <div>
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
                 <div class="container">
-                    <a class="navbar-brand" href="/home">Router-App</a>
+                    <a class="navbar-brand" href="/">Router-app</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
                             <a class="nav-link active" aria-current="page" href="/home">Home</a>
-                            <a class="nav-link" href="/cadastro">Cadastro</a>
-                            <a class="nav-link" href="/login">Login</a>
+                            <a class="nav-link" href="/usuarios">Usuários</a>
                             <a class="nav-link" href="/contato">Contato</a>
                         </div>
                     </div>

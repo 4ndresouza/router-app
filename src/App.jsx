@@ -1,11 +1,13 @@
-import React from 'react'
-import './App.css'
+//import './App.css'
+
 
 function App() {
-  
+
   return (
     <>
+      {/* <Navbar /> */}
       <h1>Home</h1>
+      {/* <Footer /> */}
     </>
   )
 }

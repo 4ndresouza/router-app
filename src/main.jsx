@@ -1,26 +1,18 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
 import App from './App.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NotFound from './pages/NotFound.jsx';
-import Cadastro from './pages/Cadastro.jsx';
-import { BrowserRouter, createBrowserRouter, Route, Router, RouterProvider, Routes, StaticRouterProvider } from 'react-router-dom';
-import { Home } from './pages/Home.jsx';
-import { Component } from 'react';
-import { Navbar } from './componentes/Navbar.jsx'
-import { Footer } from './componentes/Footer.jsx';
-import React from 'react';
-import { Layout } from './componentes/Layout.jsx';
-import Contato from './pages/Contato.jsx';
+import { BrowserRouter, createBrowserRouter, Route, RouterProvider, Routes } from 'react-router-dom';
 import { Login } from './pages/Login.jsx';
-
-
-
-
-
+import './index.css'
+import { Home } from './pages/Home.jsx';
+import { Layout } from './componentes/Layout.jsx';
+import Cadastro from './pages/Cadastro.jsx';
+import NotFound from './pages/NotFound.jsx';
+import Contato from './pages/Contato.jsx';
 
 const router = createBrowserRouter([
+  /* O único path que vai ficar de fora do layout (navbar + footer) */
   {
     path: '/',
     element: <Login />
@@ -30,6 +22,10 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
+        path: '/home',
+        element: <Home />
+      },
+      {
         path: '/contato',
         element: <Contato />
       },
@@ -37,23 +33,17 @@ const router = createBrowserRouter([
         path: '/cadastro',
         element: <Cadastro />
       },
-      {
-        path: '/home',
-        element: <Home />
-      }
     ]
   },
-
+  /* Página não encontrada - 404 */
   {
     path: '*',
     element: <NotFound />
-  },
-
-
+  }
 ])
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    {/* <App /> */}
     <RouterProvider router={router} />
   </StrictMode>,
 )

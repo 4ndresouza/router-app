@@ -1,32 +1,53 @@
 import { useNavigate } from "react-router-dom";
-import { Navbar } from "../componentes/Navbar";
-import { Footer } from "../componentes/Footer";
 import './Login.css'
-import React from "react";
-import InputField from "../componentes/inputfield/InputField";
 import { useState } from "react";
+import { InputField } from "../componentes/input/InputField";
 
 export const Login = () => {
     const senha = ''
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        email: '',
+        senha: ''
 
-  const [formData, setFormData] = useState({
-    email: '',
-    senha: ''
-  });
+    });
 
-    const login = e => {
-        /* evita recarregar a página */
+
+
+    const login = (e) => {
+        // evita recarregar a página
         e.preventDefault();
-        console.log('logou');
-        navigate('/home');
+        const { email, password } = formData;
+        if (email === 'adm@ctech.com' && password === 'adm123');
+        else {
+            alert('Usuário ou senha incorreto!')
+        }
     }
 
-    const handleEmail = (e) => {
-      console.log(e.target.value)
+
+
+    /* const handleEmail = (e) => {
+        console.log(e.target.id, e.target.value)
+     
+        setFormData({
+            email: e.target.value
+        })
     }
+     
     const handleSenha = (e) => {
-      console.log(e)
+        console.log(e.target.id, e.target.value)
+     
+        setFormData({
+            senha: e.target.value
+        })
+    } */
+
+    const handleInput = (e) => {
+        console.log(e.target.id, e.target.value)
+        setFormData({
+            ...formData,
+            [e.target.id]: e.target.value
+        })
     }
 
     return (
@@ -35,34 +56,30 @@ export const Login = () => {
             <form onSubmit={login}>
                 <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
 
-<InputField 
-id = 'email'
-label='Email'
-type = 'email'
-placeholder="name@example.com"
-value={formData.email}
-onChange= {handleEmail}
-/>
+               
+                <InputField
+                    id='email'
+                    label='Email'
+                    type='email'
+                    placeholder="name@example.com"
+                    value={formData.email}
+                    //onChange={handleEmail}
+                    onChange={handleInput}
+                    
+                />
 
-<InputField
-id = 'senha'
-label= 'Senha'
-type= 'password'
-placeholder= "senha"
-value={formData.senha}
-onChange= {handleSenha}
-/>
+                <InputField
+                    id='senha'
+                    label='Senha'
+                    type='password'
+                    placeholder="senha"
+                    value={formData.senha}
+                    //onChange={handleSenha}
+                    onChange={handleInput}
+                />
+             
 
 
-
-                <div className="form-floating">
-                    <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" />
-                    <label htmlFor="floatingInput">Email address</label>
-                </div>
-                <div className="form-floating">
-                    <input type="password" className="form-control" id="floatingPassword" placeholder="Password" />
-                    <label htmlFor="floatingPassword">Password</label>
-                </div>
                 <div className="form-check text-start my-3">
                     <input className="form-check-input" type="checkbox" value="remember-me" id="checkDefault" />
                     <label className="form-check-label" htmlFor="checkDefault">
