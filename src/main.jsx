@@ -7,7 +7,7 @@ import { Login } from './pages/Login.jsx';
 import './index.css'
 import { Home } from './pages/Home.jsx';
 import { Layout } from './componentes/Layout.jsx';
-import Cadastro from './pages/Cadastro.jsx';
+import { Cadastro } from './pages/Cadastro.jsx';
 import NotFound from './pages/NotFound.jsx';
 import Contato from './pages/Contato.jsx';
 
