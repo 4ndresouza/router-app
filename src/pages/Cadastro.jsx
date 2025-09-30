@@ -1,6 +1,9 @@
 import { useState, useCallback, useRef } from "react";
 //import { formatTelefone } from '../components/ultil/Util';
 import { InputField } from '../componentes/input/InputField';
+import { formatCep, formatTelefone  } from "./Util/Util";
+import { useUsuarios } from '../context/UserContext';
+
 
 export const Cadastro = () => {
   const formRef = useRef(null);
@@ -11,7 +14,17 @@ export const Cadastro = () => {
   const handleChange = (e) => {
     const { id, value } = e.target;
 
-const newValue = id === 'cep' ? formatCep(value) : value;
+    let newValue = value;
+
+    if (id === 'cep') {
+      newValue = formatCep(value);
+    }
+if( id === 'telefone') {
+  newValue = formatTelefone(value);
+}
+
+
+
 
     setFormData({
       ...formData,
@@ -22,7 +35,7 @@ const newValue = id === 'cep' ? formatCep(value) : value;
 
   const fetchEnderecoByCep = async (e) => {
     console.log('buscar na api cep')
-    const cep = e.target.value.replace(/\D/g,'').replace('-','');
+    const cep = e.target.value;
 
     if (cep.length === 8) {
       const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`)
@@ -71,6 +84,8 @@ const newValue = id === 'cep' ? formatCep(value) : value;
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    console.log('formData', formData);
 
     // Recupera usuários existentes
     const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
@@ -125,7 +140,7 @@ const newValue = id === 'cep' ? formatCep(value) : value;
                 id='telefone'
                 label='Telefone'
                 type='text'
-                value={formData.email}
+                value={formatTelefone(formData.telefone)}
                 onChange={handleChange}
                 required
               />
@@ -140,7 +155,7 @@ const newValue = id === 'cep' ? formatCep(value) : value;
                 id='cep'
                 label='CEP'
                 type='text'
-                value={formData.cep}
+                value={formatCep(formData.cep || '')}
                 onChange={handleChange}
                 onBlur={fetchEnderecoByCep}
                 required

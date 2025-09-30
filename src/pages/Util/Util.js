@@ -1,7 +1,7 @@
 // Função para aplicar a máscara
 export const formatTelefone = (value) => {
   // Remove tudo que não for número
-  let v = value.replace(/\D/g, "");
+  let v = value.replace(/\D/g,'');
 
   if (v.length > 11) v = v.slice(0, 11); // limita a 11 dígitos
 
@@ -15,7 +15,7 @@ export const formatTelefone = (value) => {
 };
 
 
-const formatCep = (value) => {
+ export const formatCep = (value) => {
   return value
     .replace(/\D/g, '')                  // Remove tudo que não for dígito
     .replace(/^(\d{2})(\d)/, '$1.$2')    // Adiciona ponto após 2 dígitos
